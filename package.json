@@ -1,0 +1,26 @@
+{
+  "name": "wishup",
+  "version": "1.0.0",
+  "description": "assignment",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/github.com/rav8657.git"
+  },
+  "author": "sourav kumar shukla",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/github.com/rav8657/issues"
+  },
+  "homepage": "https://github.com/github.com/rav8657#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "moment": "^2.29.1",
+    "mongoose": "^6.2.3",
+    "nodemon": "^2.0.15"
+  }
+}
