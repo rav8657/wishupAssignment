@@ -1,5 +1,5 @@
 const  userModel  = require("../model/userModel");
-const moment = require("moment")
+const dateTime = require("date-and-time")
 
 
 
@@ -13,8 +13,10 @@ const createUser = async (req, res) => {
     if (UserAlreadyPresent) {
       return res.status(400).send({ status: "False", msg: ` ${user_name} already taken, choose a new one` });
     }
-    await userModel.create({ user_name });
-    const response = { user_name: user_name, created_at: moment().format("YYYY-MM-DD HH:mm:ss") }
+     await userModel.create({ user_name,created_at: dateTime.format(new Date(),"YYYY-MM-DD HH:mm" ) });
+
+    const response = {user_name ,created_at: dateTime.format(new Date(),"YYYY-MM-DD HH:mm" )}
+
     return res.status(201).send({ status: "Success", data: response });
 
   } catch (error) {
@@ -23,9 +25,7 @@ const createUser = async (req, res) => {
 };
 
 
-
-
-
+//!:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 const getUser = async (req, res) => {
   try {
@@ -36,11 +36,11 @@ const getUser = async (req, res) => {
     if (!user) {
       return res.status(404).send({ status: "False", msg: ` ${user_name} has not registered yet` })}
   
-    user.created_at = moment(user.created_at).format("YYYY-MM-DD HH:mm:ss")
+    // user.created_at = moment(user.created_at).format("YYYY-MM-DD HH:mm:ss")
 
     return res.status(200).send({ status: "Success", data: user });
   } catch (error) {
-    res.status(500).send({ status: "FAILURE", msg: error.message });
+    res.status(500).send({ status: "False", msg: error.message });
   }
 };
 

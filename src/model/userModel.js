@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
   },
 
-  created_at: { type: Date },
+  created_at: { type: String },
 
 });
 
