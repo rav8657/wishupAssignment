@@ -85,9 +85,9 @@ const getSubscription = async (req, res) => {
     let validSubscription = []
 
     for (let i in findSubscription) {
-      const start_date = findSubscription[i].start_date
+      const start_date = findSubscription[i].start_date     
       const newDate = new Date(`${start_date} 00:00:00`);   //newdate convert into dateformat.
-      const convertToMilliseconds = newDate.getTime();
+      const convertToMilliseconds = newDate.getTime();      
 
       if (findSubscription[i].plan_id === 'FREE') {        //If subscription is free than plane go to infinte.
 
@@ -99,20 +99,19 @@ const getSubscription = async (req, res) => {
         validSubscription.push(responseObject)
       } else {
         const planIndex = planId.indexOf(findSubscription[i].plan_id)
-        const validDays = planValidity[planIndex]                  // checking validDays
+        const validDays = planValidity[planIndex]                  // checking how many validDays
         const remainingDays = (validDays * 24 * 60 * 60 * 1000) + convertToMilliseconds  //checking remainingDays & converting date-time into Milliseconds
 
         const valid_upto = new Date(remainingDays).toLocaleDateString()    // toLocaleDateString convert it in a given format
         let splitDate = valid_upto.split('/')
 
         const responseObject = {
-          plan_id: findSubscription[i].plan_id,                              // changing valid upto validity
+          plan_id: findSubscription[i].plan_id,                              // changing valid_upto validity
           start_date: findSubscription[i].start_date,
-          valid_upto: `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`
+          valid_upto: `${splitDate[2]}-${splitDate[0]}-${splitDate[1]}`
         }
         validSubscription.push(responseObject)
       }
-
     }
     return res.status(200).send({ status: "Success", data: validSubscription })
   } catch (error) {
