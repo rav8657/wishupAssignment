@@ -87,27 +87,27 @@ const getSubscription = async (req, res) => {
 
     for (let i in findSubscription) {
       const start_date = findSubscription[i].start_date
-      const newDate = new Date(`${start_date} 00:00:00`);
-      const convertToMilliseconds = newDate.getTime();
+      const newDate = new Date(`${start_date} 00:00:00`);   //newdate convert into dateformat.
+      const convertToMilliseconds = newDate.getTime();      
 
-      if (findSubscription[i].plan_id === 'FREE') {
+      if (findSubscription[i].plan_id === 'FREE') {        //If subscription is free than plane go to infinte.
 
         let responseObject = {
-          plan_id: findSubscription[i].plan_id,
+          plan_id: findSubscription[i].plan_id,            
           start_date: findSubscription[i].start_date,
           valid_upto: 'infinite'
         }
         validSubscription.push(responseObject)
       } else {
-        const planIndex = planId.indexOf(findSubscription[i].plan_id)
-        const validDays = planValidity[planIndex]
-        const remainingDays = (validDays * 24 * 60 * 60 * 1000) + convertToMilliseconds  //converting date-time into Milliseconds
+        const planIndex = planId.indexOf(findSubscription[i].plan_id)     
+        const validDays = planValidity[planIndex]                  // checking validDays
+        const remainingDays = (validDays * 24 * 60 * 60 * 1000) + convertToMilliseconds  //checking remainingDays & converting date-time into Milliseconds
 
-        const valid_upto = new Date(remainingDays).toLocaleDateString()
+        const valid_upto = new Date(remainingDays).toLocaleDateString()    // toLocaleDateString convert it in a given format
         let splitDate = valid_upto.split('/')
 
         const responseObject = {
-          plan_id: findSubscription[i].plan_id,
+          plan_id: findSubscription[i].plan_id,                              // changing valid upto validity
           start_date: findSubscription[i].start_date,
           valid_upto: `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`
         }
