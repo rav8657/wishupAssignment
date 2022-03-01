@@ -1,12 +1,12 @@
 const  userModel  = require("../model/userModel");
 const dateTime = require("date-and-time")
 
-// Registering user
+//* Registering user
 const createUser = async (req, res) => {
   try {
     const user_name = req.params.user_name;
 
-    //checking whether user already Present  or not
+    //*checking whether user already Present  or not
     const UserAlreadyPresent = await userModel.findOne({ user_name });
 
     if (UserAlreadyPresent) {
@@ -24,8 +24,9 @@ const createUser = async (req, res) => {
 };
 
 
-//!:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-//Fetching user details
+//!....................................................................................
+//*Fetching user details
+
 const getUser = async (req, res) => {
   try {
     const user_name = req.params.user_name;
