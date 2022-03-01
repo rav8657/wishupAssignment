@@ -28,17 +28,26 @@
   - _PUT /user/Sourav 
 - **Required Output**
   - Just a HTTP status code of 200 on success/ 201 for successful creation or any other appropriate code for failures.
+
+ - Postman sample
+ ![A Postman collection sample](assets/putUser.jpg)
+
 ### GET /user/:user_name
 - Fetch the user document from the database by the user_name.
 - **Sample input**
   - _GET /user/Sourav 
 - **Sample Output**
 ```yaml
+
 {
     user_name : "Sourav Shukla",
     created_at : "2022-02-28 20:30:05"
 }
 ```
+
+ - Postman sample
+ ![A Postman collection sample](assets/getUser.jpg)
+
 ### POST /subscription
 - This is the primary API being tested in this assignment.
 - Register a new subscription for an existing user, with a specified plan and start date.
@@ -57,6 +66,10 @@
         amount : "-200.0"
     }
     ```
+
+ - Postman sample
+ ![A Postman collection sample](assets/createSubs.jpg)
+
 - On success, return 200 HTTP status code. For failures, pick an appropriate status code for it.
 - The timestamps indicates the start date for the new plan, and it will be valid for the number of days shown in the table below.
 - plan_id can be one of those listed in the table below : 
@@ -81,6 +94,10 @@
         days_left : 3
     }
     ```
+
+ - Postman sample
+ ![A Postman collection sample](assets/getSubs.jpg)
+
 - When input date is NOT specified.
     - List all subscription entire available in database for user with start and valid till dates.
 - __Sample Output__
