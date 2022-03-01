@@ -60,6 +60,7 @@
 - On success, return 200 HTTP status code. For failures, pick an appropriate status code for it.
 - The timestamps indicates the start date for the new plan, and it will be valid for the number of days shown in the table below.
 - plan_id can be one of those listed in the table below : 
+
 |**Plan ID** | **Validity (in days)** | **Cost (USD)**|
 |------------|------------------------|---------------|
 |   FREE     |      infinite          |    0.0        |
@@ -68,6 +69,7 @@
 |  PRO_1M    |        30              |  200.0        |
 |  LITE_6M   |       180              |  500.0        |
 |  PRO_6M    |       180              |  900.0        |
+
 ### GET /subscription/:user_name/:start_date
 - When input date is specified.
     - plan_id that will be active for user at specified date.
