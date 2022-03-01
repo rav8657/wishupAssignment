@@ -1,19 +1,14 @@
 const mongoose = require("mongoose");
 
-//const subsPlan = require("../configs/subsPlan.js");
-
-
-const subsSchema = new mongoose.Schema({
+const subscriptionSchema = new mongoose.Schema({
   user_name: {
     type: String,
-    refs: "User",
     required: "Enter the user name",
     trim: true,
   },
   plan_id: {
     type: String,
     required: "Enter a plan Id",
-    enum: ["FREE", "TRIAL", "LITE_1M", "PRO_1M", "LITE_6M", "PRO_6M"],
     trim: true,
   },
   start_date: {
@@ -26,4 +21,4 @@ const subsSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("subscription", subsSchema);
+module.exports = mongoose.model("subscription", subscriptionSchema);

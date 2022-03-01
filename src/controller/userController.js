@@ -1,13 +1,12 @@
 const  userModel  = require("../model/userModel");
 const dateTime = require("date-and-time")
 
-
-
-
+// Registering user
 const createUser = async (req, res) => {
   try {
     const user_name = req.params.user_name;
 
+    //checking whether user already Present  or not
     const UserAlreadyPresent = await userModel.findOne({ user_name });
 
     if (UserAlreadyPresent) {
@@ -26,19 +25,17 @@ const createUser = async (req, res) => {
 
 
 //!:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
+//Fetching user details
 const getUser = async (req, res) => {
   try {
     const user_name = req.params.user_name;
 
-    let user = await userModel.findOne({ user_name }, { _id: 0, __v: 0 });
+    let findUser = await userModel.findOne({ user_name }, { _id: 0, __v: 0 });
 
-    if (!user) {
+    if (!findUser) {
       return res.status(404).send({ status: "False", msg: ` ${user_name} has not registered yet` })}
   
-    // user.created_at = moment(user.created_at).format("YYYY-MM-DD HH:mm:ss")
-
-    return res.status(200).send({ status: "Success", data: user });
+    return res.status(200).send({ status: "Success", data: findUser });
   } catch (error) {
     res.status(500).send({ status: "False", msg: error.message });
   }
